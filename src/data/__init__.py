@@ -1,1 +1,1 @@
-from .loader import data
+from .loader import data, model
