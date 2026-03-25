@@ -19,3 +19,20 @@ def cosine_similarity(query_vec: np.ndarray, candidate_vec: np.ndarray) -> float
     magnitude_candidate_vec: float = np.linalg.norm(candidate_vec)
     
     return dot_product/(magnitude_query_vec * magnitude_candidate_vec)
+
+
+# Vector similarity search 
+def vector_search(search_query: np.ndarray, data: dict, tok_k: int) -> list:
+    # Store similarity scores for each candidate vector in data
+    similarity_scores: list = []
+    
+    # Calculate similarity score for each candidate vector, against the search query
+    for label, vector in data.items():
+        score = cosine_similarity(search_query, vector)
+        similarity_scores.append((label, score))
+        
+    # Sort similarity scores in descending order
+    similarity_scores.sort(key=lambda x: x[1], reverse=True)
+    
+    # Return top tok_k candidates
+    return similarity_scores[:tok_k] 
