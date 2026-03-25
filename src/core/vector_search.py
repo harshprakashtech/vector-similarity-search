@@ -22,7 +22,7 @@ def cosine_similarity(query_vec: np.ndarray, candidate_vec: np.ndarray) -> float
 
 
 # Vector similarity search 
-def vector_search(search_query: np.ndarray, data: dict, tok_k: int) -> list:
+def vector_search(search_query: np.ndarray, data: dict, tok_k: int = 3) -> list:
     # Store similarity scores for each candidate vector in data
     similarity_scores: list = []
     
